@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
 from django.db.models import Max, Sum, Count
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.contrib import messages
 from django.contrib.sites.models import Site
 from django.shortcuts import get_object_or_404
