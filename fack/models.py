@@ -1,3 +1,6 @@
+from __future__ import unicode_literals, print_function
+from django.utils.encoding import python_2_unicode_compatible
+
 import datetime
 
 from django.db import models
@@ -10,6 +13,7 @@ from .conf import STORAGE
 from .managers import QuestionManager, SiteQuestionManager, SiteTopicManager
 
 
+@python_2_unicode_compatible 
 class Topic(models.Model):
     """
     Generic Topics for FAQ question grouping
@@ -34,7 +38,7 @@ class Topic(models.Model):
         verbose_name_plural = _("Topics")
         ordering = ['sort_order', 'nr_views', 'name']
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     @models.permalink
@@ -46,6 +50,7 @@ class Topic(models.Model):
         self.save()
 
 
+@python_2_unicode_compatible 
 class Question(models.Model):
     HEADER = 2
     ACTIVE = 1
@@ -88,7 +93,7 @@ class Question(models.Model):
         verbose_name_plural = _("Frequently asked questions")
         ordering = ['sort_order', 'nr_views', 'created_on']
 
-    def __unicode__(self):
+    def __str__(self):
         return self.text
 
     @models.permalink
@@ -131,6 +136,7 @@ SCORE_CHOICES = (
 )
 
 
+@python_2_unicode_compatible 
 class QuestionScore(models.Model):
     """
 
@@ -140,7 +146,7 @@ class QuestionScore(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, default=-1)
     ip_address = models.GenericIPAddressField(_('IP address'), blank=True, null=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.question
 
 
